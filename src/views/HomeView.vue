@@ -42,10 +42,10 @@
               <div class="card-body">
                 <h5 class="card-title"><b>{{item.title}}</b></h5>
                 <p class="card-text mt-3">Price: {{item.price * item.amount}}$</p>
-                <div class="row justify-content-center">
-                  <button type="button" style="width: 40px;" class="btn btn-primary col" @click="add(item)">+</button>
-                  <input type="number" style="width:70px;" min="1" :max="item.amount" v-model="item.amount">
-                  <button type="button" style="width: 40px;" class="btn btn-warning col" @click="remove(item)">-</button>
+                <div class="d-flex justify-content-center form-group" style="align-items:center">
+                  <button type="button" class="btn btn-primary col button-add" @click="add(item)">+</button>
+                  <input type="number" style="width:70px; height: fit-content; " min="1" class="form-control" :max="item.amount" v-model="item.amount">
+                  <button type="button" class="btn btn-warning col button-remove" @click="remove(item)">-</button>
                 </div>
                 <div class="d-flex justify-content-center">
                   <a class="btn btn-success m-2 button mt-4" @click="Buy(item.id)">Buy</a>
@@ -383,6 +383,60 @@
 }
 
 .button-details:active {
+  transform: scale(0.9);
+}
+
+.button-add {
+  position: relative;
+  display: inline-block;
+  margin: 15px;
+  padding: 0px 10px;
+  text-align: center;
+  font-size: 18px;
+  letter-spacing: 1px;
+  text-decoration: none;
+  color: blue;
+  background: transparent;
+  cursor: pointer;
+  transition: ease-out 0.5s;
+  border: 2px solid blue;
+  border-radius: 10px;
+  box-shadow: inset 0 0 0 0 blue;
+}
+
+.button-add:hover {
+  color: white;
+  box-shadow: inset 0 -100px 0 0 blue;
+}
+
+.button-add:active {
+  transform: scale(0.9);
+}
+
+.button-remove {
+  position: relative;
+  display: inline-block;
+  margin: 15px;
+  padding: 0px 10px;
+  text-align: center;
+  font-size: 18px;
+  letter-spacing: 1px;
+  text-decoration: none;
+  color: black;
+  background: transparent;
+  cursor: pointer;
+  transition: ease-out 0.5s;
+  border: 2px solid yellow;
+  border-radius: 10px;
+  box-shadow: inset 0 0 0 0 yellow;
+}
+
+.button-remove:hover {
+  color: black;
+  box-shadow: inset 0 -100px 0 0 yellow;
+}
+
+.button-remove:active {
   transform: scale(0.9);
 }
 </style>
