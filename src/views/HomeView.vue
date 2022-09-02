@@ -62,7 +62,7 @@
       await this.$store.dispatch('showProducts');
       await this.$store.dispatch('getAllCart');
       let isLogged = localStorage.getItem("isLogged");
-
+      
       if (isLogged != "true") {
         this.$router.push("/");
       } else {

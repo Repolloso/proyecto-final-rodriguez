@@ -44,6 +44,11 @@
       this.price = this.prod.price
       this.amount = this.prod.amount
       this.image = this.prod.image
+
+      const user = JSON.parse(localStorage.getItem("user"));
+      if (user.isAdmin != true) {
+        this.$router.push("/home");
+      }
     },
     data () {
       return {

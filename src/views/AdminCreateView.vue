@@ -8,8 +8,8 @@
             <p class="card-text"> Description:<input type="text" name="description" v-model="description" class="form-control"></p>
             <p class="card-text">Price: <input type="number" name="price" v-model="price" class="form-control"></p>
             <p class="card-text">Amount: <input type="number" name="amount" v-model="amount" class="form-control"></p>
-            <label for="formFile" class="form-label">Image:</label>
-            <input class="form-control mb-4" type="url" id="formFile">
+            <label for="formFile" class="form-label">Image (link):</label>
+            <input class="form-control mb-4" type="url" id="formFile" v-model="image">
             <button type="button" class="btn btn-primary" @click="createProduct">Create</button>
           </div>
         </div>
@@ -33,6 +33,10 @@
         this.$store.state.userLogin = true
       }
 
+      const user = JSON.parse(localStorage.getItem("user"));
+      if (user.isAdmin != true) {
+        this.$router.push("/home");
+      }
     },
     data () {
       return {

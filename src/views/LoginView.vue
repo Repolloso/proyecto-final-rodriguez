@@ -72,8 +72,7 @@ export default  {
         if (this.user_list) {
             if (data) {
                 localStorage.setItem("isLogged", "true");
-                const payload = localStorage.setItem("user", JSON.stringify(data));
-                this.$store.commit('SET_CURRENT_USER', payload)
+                localStorage.setItem("user", JSON.stringify(data));
 
                 if (data?.isAdmin) {
                     this.$store.state.userLogin = true

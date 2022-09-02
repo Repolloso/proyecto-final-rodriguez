@@ -72,10 +72,15 @@
       } else {
         this.$store.state.userLogin = true
       }
+
+      const user = JSON.parse(localStorage.getItem("user"));
+      if (user.isAdmin != true) {
+        this.$router.push("/home");
+      }
     },
     data () {
       return {
-
+        user: []
       }
     },
     methods: {

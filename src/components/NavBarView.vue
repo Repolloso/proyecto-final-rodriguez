@@ -11,7 +11,7 @@
             <li class="nav-item">
               <a class="nav-link" aria-current="page" href="/home">Home</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" v-if="user.isAdmin == true">
               <a class="nav-link" aria-current="page" href="/admin">Admin</a>
             </li>
             <li class="nav-item">
@@ -33,14 +33,16 @@
 
     },
     mounted () {
-
+      const user = JSON.parse(localStorage.getItem("user"));
+      this.user = user;
     },
     data () {
       return {
-
+        user: []
       }
     },
     methods: {
+
       logout(){
         localStorage.setItem('isLogged', 'false')
         this.$store.state.userLogin = false;
