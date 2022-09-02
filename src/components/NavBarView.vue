@@ -2,11 +2,11 @@
   <section class="nav-bar-view">
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
       <div class="container-fluid"> 
-        <a class="navbar-brand">Vue Proyect <img src="../assets/logo.png" alt="" width="10%"></a>
+        <a href="/home" style="text-decoration:none"><img src="../assets/logo.png" alt="logo_vue" class="navbar-brand" width="40"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
+        <div class="collapse navbar-collapse justify-content-center container" id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item">
               <a class="nav-link" aria-current="page" href="/home">Home</a>
