@@ -32,11 +32,11 @@
               </div>
               <div class="card-body">
                 <h5 class="card-title"><b>{{item.title}}</b></h5>
-                <p class="card-text mt-3">Price: {{item.price * this.cant}}$</p>
+                <p class="card-text mt-3">Price: {{item.price * item.amount}}$</p>
                 <div class="row justify-content-center">
-                  <button type="button" style="width: 40px;" class="btn btn-primary col" @click="add">+</button>
-                  <input type="number" style="width:70px;" min="1" :max="item.amount" v-model="cant">
-                  <button type="button" style="width: 40px;" class="btn btn-warning col" @click="remove">-</button>
+                  <button type="button" style="width: 40px;" class="btn btn-primary col" @click="add(item)">+</button>
+                  <input type="number" style="width:70px;" min="1" :max="item.amount" v-model="item.amount">
+                  <button type="button" style="width: 40px;" class="btn btn-warning col" @click="remove(item)">-</button>
                 </div>
                 <div class="d-flex justify-content-center">
                   <a class="btn btn-success m-2" @click="Buy(item.id)">Buy</a>
@@ -91,18 +91,19 @@
       async deleteCart(id) {
         await this.$store.dispatch('deleteCart', id)
       },
-      add(){
-        this.cant ++
+      add(item){
+        this.$store.dispatch('addCartAmount', item)
       },
-      remove(){
-        this.cant --
-        if (this.cant < 1) {
-          this.cant = 1
+      async remove(item){
+        if (item.amount < 2) {
+          await this.$store.dispatch('deleteCart', item.id)
+        } else {
+          this.$store.dispatch('removeCartAmount', item)
         }
       },
       Buy(id){
         Swal.fire({
-          title: 'Are you sure?',
+          title: 'Do you want to but it?',
           text: "You won't be able to revert this!",
           icon: 'question',
           showCancelButton: true,

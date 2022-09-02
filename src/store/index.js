@@ -101,7 +101,7 @@ export default createStore({
       await axios.delete("https://630437490de3cd918b438a21.mockapi.io/products/" + id)
       .then(response => {
           console.log(response);
-          location.reload()
+          context.dispatch('showProducts')
       })
       .catch(error => {
           console.log(error);
@@ -140,11 +140,29 @@ export default createStore({
     async deleteCart(context, payload) {
       try{
         await axios.delete("https://630437490de3cd918b438a21.mockapi.io/cart/" + payload)
-        location.reload()
+        context.dispatch('getAllCart')
       }catch(e) {
         console.log(e)
       }
     },
+    async addCartAmount(context, payload) {
+      let data = this.state.cartList.findIndex(o => o.id === payload.id)
+      if (data > -1) {
+        this.state.cartList[data].amount ++
+        await axios.put(`https://630437490de3cd918b438a21.mockapi.io/cart/${payload.id}`, {
+          amount: this.state.cartList[data].amount
+        })
+      }
+    },
+    async removeCartAmount(context, payload) {
+      let data = this.state.cartList.findIndex(o => o.id === payload.id)
+      if (data > -1) {
+        this.state.cartList[data].amount --
+        await axios.put(`https://630437490de3cd918b438a21.mockapi.io/cart/${payload.id}`, {
+          amount: this.state.cartList[data].amount
+        })
+      }
+    }
   },
   modules: {
   }

@@ -13,7 +13,6 @@
             <h5 class="card-title"><b>{{this.showProduct.title}}</b></h5>
             <p class="card-text" style="text-align: justify">{{this.showProduct.description}}</p>
             <p class="card-text">Price: {{this.showProduct.price}}$</p>
-            <a class="btn btn-success m-2" @click="Buy(item.id)">Buy</a>
           </div>
         </div>
     </section>

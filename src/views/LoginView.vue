@@ -24,7 +24,7 @@
                 <span class="fas fa-key"></span>
                 <input type="password" name="password" id="pwd" placeholder="Password" v-model="password">
             </div>
-            <button type="sumbit" class="btn mt-3">Login</button>
+            <button type="submit" class="btn mt-3">Login</button>
         </form>
         <div class="text-center fs-6">
             <a href="/register">Sign up</a>
@@ -53,7 +53,8 @@ export default  {
     },  
     methods: {
     async login () {
-
+        // Para no repetir el mismo error y los borre.
+        this.errors = []
         if (!this.name) {
             this.errors.push('Name is required')
         }
