@@ -4,53 +4,56 @@
     <div class="d-flex justify-content-start">
       <a href="/admin/create" class="btn btn-success mt-5">New Product</a>
     </div>
-    <table class="table table-striped table-responsive mt-2 mb-5">
-      <thead>
-        <tr>
-          <th>Id</th>
-          <th>Title</th>
-          <th>Image</th>
-          <th>Description</th>
-          <th>Amount</th>
-          <th>Price</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="(items, index) in this.products" :key="index">
-          <td class="align-middle">
-            <b>{{items.id}}</b>
-          </td>
-          <td style="text-align: justify" class="border-end border-start align-middle">
-            <b>{{items.title}}</b>
-          </td>
-          <td style="text-align: justify" class="border-end border-start align-middle">
-            <img :src="items.image" :alt="items.title" style="width: 100%;">
-          </td>
-          <td style="text-align: justify" class="border-end align-middle">
-            {{items.description}}
-          </td>
-          <td v-if="items.amount < 20" class="text-danger border-end align-middle">
-            {{items.amount}}
-          </td>
-          <td v-else-if="items.amount >= 20 && items.amount <= 50" class="text-warning border-end align-middle">
-            {{items.amount}}
-          </td>
-          <td v-else class="text-success border-end align-middle">
-            {{items.amount}}
-          </td>
-          <td class="border-end align-middle">
-            {{items.price}}$
-          </td>
-          <td class="align-middle">
-            <div class="row justify-content-center">
-              <button type="button" style="width: auto;" class="btn btn-primary mb-1" @click="editProduct(items.id)"><i class="bi bi-pencil-square"></i></button>
-              <button type="button" style="width: auto;" class="btn btn-danger" @click="deleteButton(items.id)"><i class="bi bi-trash-fill"></i></button>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="table-responsive">
+      <table class="table table-striped mt-2 mb-5 col-md-10">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Image</th>
+            <th>Description</th>
+            <th>Amount</th>
+            <th>Price</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(items, index) in this.products" :key="index">
+            <td class="align-middle">
+              <b>{{items.id}}</b>
+            </td>
+            <td style="text-align: justify" class="border-end border-start align-middle">
+              <b>{{items.title}}</b>
+            </td>
+            <td style="text-align: justify" class="border-end border-start align-middle">
+              <img :src="items.image" :alt="items.title" style="width: 100%;">
+            </td>
+            <td style="text-align: justify" class="border-end align-middle overflow-auto">
+              {{items.description}}
+            </td>
+            <td v-if="items.amount < 20" class="text-danger border-end align-middle">
+              {{items.amount}}
+            </td>
+            <td v-else-if="items.amount >= 20 && items.amount <= 50" class="text-warning border-end align-middle">
+              {{items.amount}}
+            </td>
+            <td v-else class="text-success border-end align-middle">
+              {{items.amount}}
+            </td>
+            <td class="border-end align-middle">
+              {{items.price}}$
+            </td>
+            <td class="align-middle">
+              <div class="row justify-content-center">
+                <button type="button" style="width: auto;" class="btn btn-primary mb-1" @click="editProduct(items.id)"><i class="bi bi-pencil-square"></i></button>
+                <button type="button" style="width: auto;" class="btn btn-danger" @click="deleteButton(items.id)"><i class="bi bi-trash-fill"></i></button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      
+    </div>
   </section>
 </template>
 

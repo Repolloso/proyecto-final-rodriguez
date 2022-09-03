@@ -2,7 +2,7 @@
   <div class="container">
     <h1 style="margin-top: 8%">Detail of the component</h1>
     <section class="d-flex justify-content-center">
-        <div class="card col-6 mt-5 card-shadow">
+        <div class="card col-md-6 mt-5 card-shadow">
           <div class="p-2" style="align-self: end;">
             <a class="button-close rounded-circle" href="/home" style="text-decoration:none">
               <span class="shadow rounded-circle"></span>

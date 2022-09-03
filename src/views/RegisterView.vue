@@ -36,7 +36,7 @@
             <div class="d-flex align-items-center">
               <span class="fas fa-key"></span>
               <select name="rol" v-model="user_rol" style="width: 100%" class="form-field">
-                <option value="user">User</option>
+                <option value="user" >User</option>
                 <option value="admin">Admin</option>
               </select>
             </div>
@@ -102,7 +102,7 @@ import { required } from '@vuelidate/validators';
         }
         // ! Select
         if (!this.user_rol) {
-          this.errors.push('Password is required')
+          this.errors.push('Select a user type')
         }else if (this.password.length > 10) {
           this.errors.push('The password must have a maximum of 10 characters')
         }
