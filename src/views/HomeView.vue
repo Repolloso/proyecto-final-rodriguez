@@ -94,7 +94,6 @@
           amount: this.cant,
           userId: this.userData.id,
         }
-        console.log(payload);
         await this.$store.dispatch('saveToCart', payload);
       },
       async deleteCart(id) {
@@ -110,7 +109,7 @@
           this.$store.dispatch('removeCartAmount', item)
         }
       },
-      Buy2(){
+      async Buy2(){
         Swal.fire({
           title: 'Do you want to but it?',
           text: "You won't be able to revert this!",
@@ -123,7 +122,8 @@
           if (result.isConfirmed) {
             const user = localStorage.getItem("user");
             this.$store.dispatch('saveHistorical', {cart: JSON.stringify(this.cart), userId: (JSON.parse(user)).id})
-            this.cart.map(item => {
+            this.cart.forEach( (item) => {
+              console.log(item);
               this.$store.dispatch('deleteCart', item.id)
             })
             Swal.fire(
