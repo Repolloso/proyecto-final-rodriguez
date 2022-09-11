@@ -47,10 +47,10 @@
                   <input type="number" style="width:70px; height: fit-content;" min="1" class="form-control" :max="item.amount" v-model="item.amount">
                   <button type="button" class="btn btn-warning col button-remove" @click="remove(item)">-</button>
                 </div>
-                <div class="d-flex justify-content-center">
-                  <a class="btn btn-success m-2 button mt-4" @click="Buy(item.id)">Buy</a>
-                </div>
               </div>
+            </div>
+            <div v-if="this.cart.length > 0" class="d-flex justify-content-center">
+                <a class="btn btn-success m-2 button mt-4" @click="Buy2()">Comprar todo</a>
             </div>
           </div>
         </div>
@@ -110,7 +110,7 @@
           this.$store.dispatch('removeCartAmount', item)
         }
       },
-      Buy(id){
+      Buy2(){
         Swal.fire({
           title: 'Do you want to but it?',
           text: "You won't be able to revert this!",
@@ -121,7 +121,11 @@
           confirmButtonText: 'Yes, Buy!'
         }).then((result) => {
           if (result.isConfirmed) {
-            this.$store.dispatch('deleteCart', id)
+            const user = localStorage.getItem("user");
+            this.$store.dispatch('saveHistorical', {cart: JSON.stringify(this.cart), userId: (JSON.parse(user)).id})
+            this.cart.map(item => {
+              this.$store.dispatch('deleteCart', item.id)
+            })
             Swal.fire(
               'Success!',
               'You have been bought it with success!.',

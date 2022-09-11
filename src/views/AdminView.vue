@@ -25,8 +25,8 @@
             <td style="text-align: justify" class="border-end border-start align-middle">
               <b>{{items.title}}</b>
             </td>
-            <td style="text-align: justify" class="border-end border-start align-middle">
-              <img :src="items.image" :alt="items.title" style="width: 100%;">
+            <td class="border-end border-start align-middle">
+              <img :src="items.image" :alt="items.title" style="width: 65%;">
             </td>
             <td style="text-align: justify" class="border-end align-middle overflow-auto">
               {{items.description}}

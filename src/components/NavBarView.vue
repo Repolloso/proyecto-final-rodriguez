@@ -7,9 +7,12 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse justify-content-center container" id="navbarNav">
-          <ul class="navbar-nav">
+          <ul class="navbar-nav d-flex">
             <li class="nav-item">
               <a class="nav-link" aria-current="page" href="/home">Home</a>
+            </li>
+            <li class="nav-item" v-if="user.isAdmin == true">
+              <a class="nav-link" aria-current="page" href="/historical">Historical</a>
             </li>
             <li class="nav-item" v-if="user.isAdmin == true">
               <a class="nav-link" aria-current="page" href="/admin">Admin</a>

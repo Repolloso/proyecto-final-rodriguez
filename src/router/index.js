@@ -42,6 +42,12 @@ const routes = [
     name: 'edit',
     props: true,
     component: () => import('../views/AdminEditView.vue')
+  },
+  {
+    path: '/historical',
+    name: 'historical',
+    props: true,
+    component: () => import('../views/HistoricalView.vue')
   }
 ]
 

@@ -8,6 +8,7 @@ export default createStore({
     productList:[],
     userLogin: false,
     showProduct:[],
+    showHistorical:[],
   },
   getters: {
       User_List: (state) => {
@@ -37,6 +38,34 @@ export default createStore({
         })
         return localCart
     },
+    historical: (state) => {
+      // filter showHistorical by userId
+      let data_user = localStorage.getItem("user")
+      let user = JSON.parse(data_user)
+      let showHistorical = state.showHistorical.filter(function(o){ 
+        return o.userId == user.id}) //{userId: 1, cart}
+      const isJsonString = function(str) {
+        try {
+            JSON.parse(str);
+        } catch (e) {
+            return false;
+        }
+        return true;
+      }
+      
+      if(showHistorical.length > 0){
+        let showHistorical2 = showHistorical.map(function(o){ 
+          let cart = o.cart
+          if(isJsonString(cart)){
+            cart = JSON.parse(cart)
+            return cart
+          }else{
+            return cart
+          }
+        })
+        return showHistorical2
+      }
+    }
   },
   mutations: {
     LOGIN: (state, data) => {
@@ -58,6 +87,10 @@ export default createStore({
     SET_CART: (state, cart) => {
       state.cartList = cart;
     },
+    SET_HISTORICAL: (state, historical) => {
+      state.showHistorical = historical;
+  
+    }
   },
   actions: {
     async register(context, payload) {
@@ -162,7 +195,24 @@ export default createStore({
           amount: this.state.cartList[data].amount
         })
       }
-    }
+    },
+    // save into api an historical shopping
+    async saveHistorical(context, payload) {
+      try {
+        await axios.post(`https://630437490de3cd918b438a21.mockapi.io/historical`, payload)
+      } catch (e){
+        console.log(e)
+      }
+    },
+    // get all historical shopping
+    async getHistorical(context) {
+      try{
+          let resp = await axios.get(`https://630437490de3cd918b438a21.mockapi.io/historical`)
+          context.commit('SET_HISTORICAL', resp.data)
+      } catch(e) {
+          console.log(e)
+      }
+    },
   },
   modules: {
   }
